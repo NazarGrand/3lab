@@ -1,0 +1,177 @@
+
+Private Sub cmdDo_Click()
+
+Dim Rozklad_Exam() As Date
+
+Dim count As Integer
+count = CInt(txtInput.Text)
+
+ReDim Rozklad_Exam(count)
+
+Dim num As Integer
+num = 0
+
+Dim index As Integer
+index = 0
+
+If num < count Then
+If txt1.Text <> "" Then
+Rozklad_Exam(index) = CDate(txt1.Text)
+End If
+End If
+
+num = num + 1
+If num < count Then
+If txt2.Text <> "" Then
+index = index + 1
+Rozklad_Exam(index) = CDate(txt2.Text)
+End If
+End If
+
+num = num + 1
+If num < count Then
+If txt3.Text <> "" Then
+index = index + 1
+Rozklad_Exam(index) = CDate(txt3.Text)
+End If
+End If
+
+num = num + 1
+If num < count Then
+If txt4.Text <> "" Then
+index = index + 1
+Rozklad_Exam(index) = CDate(txt4.Text)
+End If
+End If
+
+num = num + 1
+If num < count Then
+If txt5.Text <> "" Then
+index = index + 1
+Rozklad_Exam(index) = CDate(txt5.Text)
+End If
+End If
+
+num = num + 1
+If num < count Then
+If txt6.Text <> "" Then
+index = index + 1
+Rozklad_Exam(index) = CDate(txt6.Text)
+End If
+End If
+
+num = num + 1
+If num < count Then
+If txt7.Text <> "" Then
+index = index + 1
+Rozklad_Exam(index) = CDate(txt7.Text)
+End If
+End If
+
+num = num + 1
+If num < count Then
+If txt8.Text <> "" Then
+index = index + 1
+Rozklad_Exam(index) = CDate(txt8.Text)
+End If
+End If
+
+Dim Days() As Integer
+ReDim Days(count)
+
+For i = 0 To index Step 1
+Days(i) = DateDiff("d", Now, Rozklad_Exam(i))
+Next i
+
+    Dim app As Object
+    Dim doc As Object
+    
+    Set app = CreateObject("Word.Application")
+    
+    app.Visible = True
+    
+    Set doc = app.Documents.Add
+   doc.Content = CStr(Rozklad_Exam(0))
+    For i = 1 To index Step 1
+    
+   doc.Content.InsertAfter Text:="   " + CStr(Rozklad_Exam(i))
+    Next i
+    
+    doc.Content.InsertAfter Text:=Chr(10)
+    
+     For i = 0 To index Step 1
+    doc.Content.InsertAfter Text:="          " + CStr(Days(i)) + "          "
+    Next i
+    
+    doc.SaveAs "D:\Visual Basic 3 lab/result.docx"
+    doc.Close
+    app.Quit
+    
+     Set Word = CreateObject("Word.Application")
+     WordDocument = Word.Documents.Open("D:\Visual Basic 3 lab\3laboratorna.docm")
+     res = Word.Run("MinDay", Days)
+     
+    Word.ActiveDocument.Close
+    Word.Quit
+    
+    lblResult.Visible = True
+    lblResult.Caption = "Íàéìåíøà ê³ëüê³ñòü äí³â: " + CStr(res)
+End Sub
+
+Private Sub CommandButton1_Click()
+  Dim count As Integer
+count = CInt(txtInput.Text)
+  
+  num = 0
+
+If num < count Then
+  lbl1.Visible = True
+  txt1.Visible = True
+End If
+  
+  num = num + 1
+  If num < count Then
+  lbl2.Visible = True
+  txt2.Visible = True
+  End If
+  
+  num = num + 1
+  If num < count Then
+  lbl3.Visible = True
+  txt3.Visible = True
+  End If
+  
+  num = num + 1
+  If num < count Then
+  lbl4.Visible = True
+  txt4.Visible = True
+  End If
+  
+  num = num + 1
+  If num < count Then
+  lbl5.Visible = True
+  txt5.Visible = True
+  End If
+  
+  num = num + 1
+  If num < count Then
+  lbl6.Visible = True
+  txt6.Visible = True
+  End If
+  
+  num = num + 1
+  If num < count Then
+  lbl7.Visible = True
+  txt7.Visible = True
+  End If
+  
+  num = num + 1
+  If num < count Then
+  lbl8.Visible = True
+  txt8.Visible = True
+  End If
+End Sub
+
+Private Sub UserForm_Click()
+
+End Sub
