@@ -1,0 +1,15 @@
+Function MinDay(Days) As Integer
+
+Dim min As Integer
+min = Days(0)
+
+Num = UBound(Days)
+For i = 1 To Num - 1 Step 1
+ If min > Days(i) Then
+    min = Days(i)
+ End If
+Next i
+ 
+ MinDay = min
+
+End Function
